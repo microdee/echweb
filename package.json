@@ -1,0 +1,39 @@
+{
+  "name": "echweb",
+  "version": "5.0.0",
+  "description": "shitty markdown website builder",
+  "author": "David Morasz <_@mcro.de>",
+  "license": "Private use, no reuse allowed",
+  "private": "true",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/microdee/microdee.github.io.git"
+  },
+  "bugs": {
+    "url": "https://github.com/microdee/microdee.github.io/issues"
+  },
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "prepare": "node prepare.mjs"
+  },
+  "homepage": "https://github.com/microdee/microdee.github.io#readme",
+  "dependencies": {
+    "fs-extra": "^10.0.1",
+    "glob": "^10.3.10",
+    "mustache": "^4.2.0",
+    "react": "^16.14.0",
+    "react-dom": "^16.14.0",
+    "react-router": "^6.2.1",
+    "react-router-dom": "^6.2.1",
+    "react-syntax-highlighter": "^15.4.5",
+
+    "echweb-shared": "file:./shared",
+    "echweb-content": "file:./content"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "^4.2.0",
+    "vite": "^5.0.0"
+  }
+}

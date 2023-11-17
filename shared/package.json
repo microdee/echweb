@@ -1,0 +1,28 @@
+{
+  "name": "echweb-shared",
+  "type": "module",
+  "version": "5.0.0",
+  "author": "David Morasz <_@mcro.de>",
+  "license": "Private use, no reuse allowed",
+  "private": "true",
+  "dependencies": {
+    "@dhaiwat10/react-link-preview": "^1.15.0",
+    "fs-extra": "^10.0.1",
+    "glob": "^7.2.0",
+    "mustache": "^4.2.0",
+    "react": "^16.14.0",
+    "react-compare-slider": "^2.2.0",
+    "react-dom": "^16.14.0",
+    "react-intersection-observer": "^8.33.1",
+    "react-lottie": "^1.2.3",
+    "react-markdown": "^8.0.0",
+    "react-pageflip": "^2.0.3",
+    "react-pdf": "^6.2.2",
+    "react-router": "^6.2.1",
+    "react-router-dom": "^6.2.1",
+    "react-syntax-highlighter": "^15.4.5",
+    "rehype-raw": "^6.1.1",
+    "remark-gfm": "^3.0.1",
+    "utterances-react": "^0.1.3"
+  }
+}

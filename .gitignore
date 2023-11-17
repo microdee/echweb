@@ -1,0 +1,17 @@
+# Dependency directory
+node_modules
+
+# Source maps
+*.js.map
+
+# Files marked with gitigx
+*gitigx*
+
+/dist
+/preprod
+package-lock.json
+/public/c
+/index.html
+/public/404.html
+/public/CNAME
+/content

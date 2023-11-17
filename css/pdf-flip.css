@@ -1,0 +1,29 @@
+.pdfpage {
+    overflow: hidden;
+}
+
+.pdfRoot {
+    background: linear-gradient(90deg, rgba(0,0,0,1) 0%, rgba(40,40,40,1) 50%, rgba(0,0,0,1) 100%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 400px;
+}
+
+.pdfRoot.mdFull {
+    overflow: visible;
+}
+
+@media (min-aspect-ratio: 1/1) {
+    .pdfRoot.mdFull {
+        height: calc(100vh - 150px);
+    }
+}
+
+.half-page {
+    position: absolute;
+    width: 200%;
+}
+.half-page.right {
+    right: 0%;
+}

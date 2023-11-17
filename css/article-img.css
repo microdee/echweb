@@ -1,0 +1,81 @@
+
+.mdArticle img {
+    max-width: 100%;
+}
+
+.mdArticle p img {
+    margin-bottom: calc(var(--p-margin) * -1);
+}
+
+.mdArticle img.expand {
+    width: 100%;
+}
+.mdFull img {
+    position: relative;
+    width: 100vw;
+    max-width: none;
+    margin-bottom: 0px !important;
+}
+
+.mdCaptionWrap {
+    margin-bottom: 0px;
+}
+
+.mdArticle img.center {
+    position: relative;
+    left: 50%;
+    transform: translate(-50%, 0);
+}
+
+.mdArticle img:last-child, .mdCaptionWrap:last-child {
+    margin-bottom: calc(var(--emphasized-content-margin) - 10px);
+}
+
+@media only screen and (min-width: 1200px) {
+    .mdArticle img.sideParallax, .mdArticle .parallax, .mdArticle *[sideparallax] {
+        position: absolute;
+        left: 100%;
+        z-index: -30;
+        width: var(--app-side-width);
+        max-width: none;
+        min-width: 100%;
+    }
+}
+
+@media only screen and (max-width: 1200px) {
+    
+    .mdArticle img.sideParallax, .mdArticle .parallax, .mdArticle *[sideparallax] {
+        --parallax-coeff: 0.0;
+    }
+    .mdArticle img.sideParallax {
+        width: 100%;
+    }
+    .mdArticle img.notInArticle {
+        display: none;
+    }
+}
+
+@media only screen and (max-width: 740px) and (orientation: portrait) {
+    .mdFull {
+        --parallax-coeff: 0.0;
+    }
+}
+
+.mdArticle .invert, .mdArticle *[invert] {
+    filter: invert(100%);
+}
+
+.mdArticle .desaturate, .mdArticle *[desaturate] {
+    filter: saturate(0%);
+}
+
+.imgCaption {
+    position: sticky;
+    bottom: 0px;
+    z-index: 100;
+    background: #000;
+    padding: 9px 15px;
+}
+.imgCaptionPre, .imgCaptionPost {
+    height: 15px;
+}
