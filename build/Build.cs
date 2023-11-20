@@ -1,11 +1,12 @@
 using System.IO;
+using System.Linq;
 using Nuke.Common;
 using Nuke.Common.IO;
 using Nuke.Common.Tooling;
+using Nuke.Common.Utilities;
 
 class BuildMain : NukeBuild
 {
-
     public static int Main () => Execute<BuildMain>();
 
     [PathVariable("npm")]
@@ -26,14 +27,19 @@ class BuildMain : NukeBuild
         .Executes(() =>
         {
             NPM("run prepare", workingDirectory: RootDirectory);
-            Directory.CreateSymbolicLink(RootDirectory / "public" / "content", RootDirectory / "content");
         });
 
     Target Build => _ => _
         .Executes(() =>
         {
             NPM("run build", workingDirectory: RootDirectory);
-            (RootDirectory / "dist" / "content" / "node_modules").DeleteDirectory();
-            (RootDirectory / "dist" / "content" / ".git").DeleteDirectory();
+            FileSystemTasks.CopyDirectoryRecursively(
+                RootDirectory / "content",
+                RootDirectory / "dist" / "content",
+                DirectoryExistsPolicy.Merge,
+                FileExistsPolicy.Overwrite,
+                d => d.Name.EqualsAnyOrdinalIgnoreCase("node_modules", "js"),
+                f => f.Name.EqualsOrdinalIgnoreCase("package.json")
+            );
         });
 }
