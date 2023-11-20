@@ -58,3 +58,4 @@ globSync('./content/**/*.md', globOptions)
             fse.outputFileSync(tpath, output);
         }
     });
+
