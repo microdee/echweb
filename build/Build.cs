@@ -34,5 +34,6 @@ class BuildMain : NukeBuild
         {
             NPM("run build", workingDirectory: RootDirectory);
             (RootDirectory / "dist" / "content" / "node_modules").DeleteDirectory();
+            (RootDirectory / "dist" / "content" / ".git").DeleteDirectory();
         });
 }
