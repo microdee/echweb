@@ -45,7 +45,7 @@
 @media only screen and (max-width: 1200px) {
     
     .mdArticle img.sideParallax, .mdArticle .parallax, .mdArticle *[sideparallax] {
-        --parallax-coeff: 0.0;
+        --parallax-coeff: 1.0;
     }
     .mdArticle img.sideParallax {
         width: 100%;
@@ -57,7 +57,7 @@
 
 @media only screen and (max-width: 740px) and (orientation: portrait) {
     .mdFull {
-        --parallax-coeff: 0.0;
+        --parallax-coeff: 1.0;
     }
 }
 
