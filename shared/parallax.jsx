@@ -168,7 +168,13 @@ export default class ParallaxEffect
         if (unclipped) {
             this.unclipped = true;
         }
-        this.registerWithScrollAnimTimeline(refElement);
+        try {
+            this.registerWithScrollAnimTimeline(refElement);
+        } catch (e) {
+            console.log("Browser didn't support ViewTimeline, falling back on naive parallax");
+            console.log(e);
+            this.registerWithAnimFrame(refElement);
+        }
     }
 
     unregister()
