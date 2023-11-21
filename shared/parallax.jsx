@@ -55,6 +55,7 @@ export default class ParallaxEffect
         this.root = document.getElementById("root");
 
         let animBody = (timestamp => {
+            if (this.unregistered) return;
             if(refElement) {
                 this.determinePerfMode(timestamp);
                 if(this.lowPerfMode) {
@@ -74,7 +75,7 @@ export default class ParallaxEffect
 
                     refElement.style.transform = `translateY(${value}px)`;
                 }
-                window.requestAnimationFrame(animBody);
+                if (!this.unregistered) window.requestAnimationFrame(animBody);
             }
         }).bind(this);
         window.requestAnimationFrame(animBody);
