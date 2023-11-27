@@ -25,6 +25,13 @@ export default class ParallaxEffect
         this.unregistered = false;
     }
 
+    absTop(el, t)
+    {
+        return  el == this.root || !el
+            ? t
+            : this.absTop(el.offsetParent, t + el.offsetTop);
+    }
+
     determinePerfMode(timestamp)
     {
         let prevPerfCounter = this.perfCounter;
