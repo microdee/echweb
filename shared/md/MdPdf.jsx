@@ -2,8 +2,9 @@ import React from 'react';
 import MdLazyLoad from '../MdLazyLoad';
 import { MdLinkHandler, GetMdUrl } from '../MdLinkHandler';
 import {Gh1, Gh2} from '../Gh';
-import MdPdfRoot from '../MdPdfRoot';
 import Utils from '../Utils';
+
+const MdPdfRoot = React.lazy(() => import('../MdPdfRoot'));
 
 export default function MdPdfExt(props)
 {
@@ -12,7 +13,11 @@ export default function MdPdfExt(props)
     delete passProps.href;
     if(isFile || !isDomain) return (
         <MdLazyLoad>
-            <MdPdfRoot href={url} {...passProps} />
+            <React.Suspense fallback={
+                <div className="mdpdf invalid"><Gh1 glitchtype={1}>♾️</Gh1></div>
+            }>
+                <MdPdfRoot href={url} {...passProps} />
+            </React.Suspense>
         </MdLazyLoad>
     );
     return (
