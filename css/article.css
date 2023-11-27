@@ -38,6 +38,7 @@
     left: calc(var(--app-left) * -1);
     z-index: 20;
     margin-bottom: -7px;
+    overflow: hidden;
     overflow: clip;
 }
 

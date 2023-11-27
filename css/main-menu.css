@@ -47,6 +47,7 @@ div.logo {
     left: calc(var(--app-left) * -1);
     width: 100vw;
     height: calc(100vh);
+    overflow: hidden;
     overflow: clip;
     max-width: none;
     z-index: 0;
