@@ -38,8 +38,14 @@ class BuildMain : NukeBuild
                 RootDirectory / "dist" / "content",
                 DirectoryExistsPolicy.Merge,
                 FileExistsPolicy.Overwrite,
-                d => d.Name.EqualsAnyOrdinalIgnoreCase("node_modules", "js"),
+                d => d.Name.EqualsAnyOrdinalIgnoreCase("node_modules", "js", ".git", "dist"),
                 f => f.Name.EqualsOrdinalIgnoreCase("package.json")
+            );
+            FileSystemTasks.CopyDirectoryRecursively(
+                RootDirectory / "content" / "dist",
+                RootDirectory / "dist",
+                DirectoryExistsPolicy.Merge,
+                FileExistsPolicy.Overwrite
             );
         });
 }
