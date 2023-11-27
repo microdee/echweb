@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import MainMenu from 'echweb-content/js/MainMenu';
+import Parameters from 'echweb-content/js/Parameters';
 import Logo from 'echweb-content/js/Logo';
 import SvgFilters from 'echweb-shared/SvgFilters';
 import MainScrollbar from './MainScrollbar';
@@ -25,7 +26,7 @@ export default class App extends React.Component {
                         marginBottom: "-10px"
                     }}
                 >
-                    <Link to="/">Olga Kocsi</Link>
+                    <Link to="/">{Parameters.header.name}</Link>
                 </h1>}
                 <MainMenu />
                 {children}
