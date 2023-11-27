@@ -13,13 +13,12 @@ export default function CardLinkExt(props)
     }
 
     let transformResult = result => {
-        result.metadata ??= {};
-        result.metadata.title ??= "";
-        result.metadata.description ??= result.metadata.title === ""
-            ? props.href : "";
-        result.metadata.image ??= "localhost/img-placeholder.jpg";
-        result.metadata.siteName ??= "";
-        result.metadata.hostname ??= new URL(props.href).hostname;
+        result.metadata = result.metadata || {};
+        result.metadata.title = result.metadata.title || "";
+        result.metadata.description = result.metadata.description || (result.metadata.title === "" ? props.href : "");
+        result.metadata.image = result.metadata.image || "localhost/img-placeholder.jpg";
+        result.metadata.siteName = result.metadata.siteName || "";
+        result.metadata.hostname = result.metadata.hostname || new URL(props.href).hostname;
         return result;
     };
 
