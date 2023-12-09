@@ -1,0 +1,90 @@
+name: Publish Echweb Site
+on:
+  workflow_call:
+    inputs:
+      content-repo:
+        required: true
+        type: string
+      target-domain:
+        required: true
+        type: string
+      target-domain_var:
+        required: true
+        type: string
+      target-repo:
+        required: true
+        type: string
+run-name: Publishing ${{ inputs.target-domain }}
+jobs:
+  build-site:
+    runs-on: ubuntu-latest
+    steps:
+      - 
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - 
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '7.0.x'
+      -
+        name: Checkout Echweb
+        uses: actions/checkout@v4
+        with:
+          repository: microdee/echweb
+          lfs: true
+      -
+        name: Checkout content from ${{ inputs.content-repo }}
+        uses: actions/checkout@v4
+        with:
+          repository: ${{ inputs.content-repo }}
+          path: ./content
+          lfs: true
+      -
+        name: Install / Prepare / Build
+        run: build.sh install prepare build
+      - 
+        name: Upload Dist
+        uses: actions/upload-artifact@v3
+        with:
+          name: ${{ inputs.target-domain_var }}-dist
+          path: dist
+  
+  publish-site:
+    needs: build-site
+    runs-on: ubuntu-latest
+    steps:
+      -
+        name: Checkout target repo ${{ inputs.target-repo }}
+        uses: actions/checkout@v4
+        with:
+          repository: ${{ inputs.target-repo }}
+          fetch-depth: 0
+          path: repo
+          lfs: true
+      -
+        name: Delete Previous Version
+        run: |
+          mkdir ./tmp
+          mv ./repo/.git ./tmp/.git
+          rm ./repo -r
+          mkdir ./repo
+          mv ./tmp/.git ./repo/.git
+      -
+        name: Download Current Version
+        uses: actions/download-artifact@v3
+        with:
+          name: ${{ inputs.target-domain_var }}-dist
+          path: repo
+      -
+        name: Create Pull Request
+        uses: peter-evans/create-pull-request@v5
+        with:
+          path: repo
+          commit-message: Echweb Publish PR
+          branch: temp-pr-remove
+          branch-suffix: short-commit-hash
+          title: Echweb Publish PR
+          assignees: microdee
+
+

@@ -1,0 +1,10 @@
+name: Propagate Echweb Changes
+on:
+  push:
+    branches:
+      - master
+jobs:
+  build-mcro_de:
+    uses: microdee/echweb-mcrode/.github/workflows/publish.yml@master
+  build-nyulga_com:
+    uses: microdee/echweb-mcrode/.github/workflows/publish.yml@master
