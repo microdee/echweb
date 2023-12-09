@@ -9,6 +9,7 @@ jobs:
     permissions:
       contents: write
       pull-requests: write
+      actions: read
     uses: microdee/echweb-mcrode/.github/workflows/publish.yml@master
     secrets:
       MCRODE_DEPLOY_TOKEN: "${{ secrets.MCRODE_DEPLOY_TOKEN }}"
