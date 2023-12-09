@@ -14,6 +14,9 @@ on:
       target-repo:
         required: true
         type: string
+    secrets:
+      PAGES_DEPLOY_TOKEN:
+        required: true
 run-name: Publishing ${{ inputs.target-domain }}
 jobs:
   build-site:
@@ -51,6 +54,7 @@ jobs:
           fetch-depth: 0
           path: dist_git
           lfs: true
+          token:  "${{ secrets.PAGES_DEPLOY_TOKEN }}"
       -
         name: Move .git folder to dist
         run: |
