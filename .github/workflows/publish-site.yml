@@ -43,48 +43,30 @@ jobs:
       -
         name: Install / Prepare / Build
         run: ./build.sh install prepare build
-      - 
-        name: Upload Dist
-        uses: actions/upload-artifact@v3
-        with:
-          name: ${{ inputs.target-domain_var }}-dist
-          path: dist
-  
-  publish-site:
-    needs: build-site
-    runs-on: ubuntu-latest
-    steps:
       -
         name: Checkout target repo ${{ inputs.target-repo }}
         uses: actions/checkout@v4
         with:
           repository: ${{ inputs.target-repo }}
           fetch-depth: 0
-          path: repo
+          path: dist_git
           lfs: true
       -
-        name: Delete Previous Version
+        name: Move .git folder to dist
         run: |
-          mkdir ./tmp
-          mv ./repo/.git ./tmp/.git
-          rm ./repo -r
-          mkdir ./repo
-          mv ./tmp/.git ./repo/.git
+          mv ./dist_git/.git ./dist/.git
+          rm ./dist_git -r
       -
-        name: Download Current Version
-        uses: actions/download-artifact@v3
+        name: Push changes to ${{ inputs.target-repo }}
+        uses: stefanzweifel/git-auto-commit-action@v5
         with:
-          name: ${{ inputs.target-domain_var }}-dist
-          path: repo
-      -
-        name: Create Pull Request
-        uses: peter-evans/create-pull-request@v5
-        with:
-          path: repo
-          commit-message: Echweb Publish PR
-          branch: temp-pr-remove
-          branch-suffix: short-commit-hash
-          title: Echweb Publish PR
-          assignees: microdee
+          commit_message: publish from gh actions
+          repository: dist
+          commit_user_name: microdee
+          commit_user_email: m@mcro.de
+          commit_author: David Morasz <m@mcro.de>
+          status_options: '--untracked-files=all'
+          skip_fetch: true
+          skip_checkout: true
 
 

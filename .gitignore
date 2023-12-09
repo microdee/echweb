@@ -8,6 +8,7 @@ node_modules
 *gitigx*
 
 /dist
+/dist_git
 /preprod
 package-lock.json
 /public/c
