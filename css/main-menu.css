@@ -46,12 +46,11 @@ div.logo {
     position: relative;
     left: calc(var(--app-left) * -1);
     width: 100vw;
-    height: calc(100vh);
+    height: 100vh;
     overflow: hidden;
     overflow: clip;
     max-width: none;
     z-index: 0;
-    /* margin-bottom: -200px; */
 }
 
 div.logo video {

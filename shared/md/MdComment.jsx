@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import PathContext from '../MdArticleContext';
 import Utils from '../Utils';
 import MdLazyLoad from '../MdLazyLoad';
+import {Gh1, Gh2} from 'echweb-shared/Gh';
 
 const MdComment = React.lazy(() => import('../MdComment'));
 
