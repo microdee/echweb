@@ -10,6 +10,8 @@ jobs:
       contents: write
       pull-requests: write
     uses: microdee/echweb-mcrode/.github/workflows/publish.yml@master
+    secrets:
+      MCRODE_DEPLOY_TOKEN: "${{ secrets.MCRODE_DEPLOY_TOKEN }}"
 # build-nyulga_com:
 #  permissions:
 #    contents: write
