@@ -27,7 +27,7 @@ class BuildMain : NukeBuild
         .After(Install)
         .Executes(() =>
         {
-            NPM("run prepare", workingDirectory: RootDirectory);
+            NPM("run mdPrepare", workingDirectory: RootDirectory);
         });
 
     Target Build => _ => _

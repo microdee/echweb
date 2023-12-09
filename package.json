@@ -16,7 +16,7 @@
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
-    "prepare": "node prepare.mjs"
+    "mdPrepare": "node prepare.mjs"
   },
   "homepage": "https://github.com/microdee/microdee.github.io#readme",
   "dependencies": {

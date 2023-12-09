@@ -3,7 +3,7 @@ import fse from "fs-extra";
 import path from "path";
 import { glob, globSync } from "glob";
 import mustache from "mustache";
-import constants from "echweb-content/js/Constants.js";
+import constants from "./content/js/Constants.js";
 
 mustache.escape = t => t;
 
