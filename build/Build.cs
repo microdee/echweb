@@ -30,6 +30,7 @@ class BuildMain : NukeBuild
         });
 
     Target Build => _ => _
+        .After(Install, Prepare)
         .Executes(() =>
         {
             NPM("run build", workingDirectory: RootDirectory);
