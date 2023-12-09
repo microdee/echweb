@@ -42,7 +42,7 @@ jobs:
           lfs: true
       -
         name: Install / Prepare / Build
-        run: build.sh install prepare build
+        run: ./build.sh install prepare build
       - 
         name: Upload Dist
         uses: actions/upload-artifact@v3
