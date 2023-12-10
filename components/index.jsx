@@ -1,13 +1,14 @@
-import React from 'react';
-import { render } from 'react-dom';
+import * as React from 'react';
+import * as ReactDOM from 'react-dom/client';
 
 import {
+    createBrowserRouter,
+    RouterProvider,
     BrowserRouter,
     Routes,
     Route,
     Navigate,
     Outlet,
-    useNavigate,
     useLocation,
     useSearchParams
 } from 'react-router-dom';
@@ -33,19 +34,24 @@ function EntryPoint() {
             <App intro={location.pathname === "/"} >
                 <Outlet />
             </App>
-        )
+        );
     }
-}
+};
 
-render(
-    <BrowserRouter>
-        <Routes>
-            <Route path="/" element={<EntryPoint />} >
-                <Route index element={<Home />} />
-                <Route path="c/*" element={<RoutedMdArticle />} />
-                <Route path="*" element={<PageNotFound />} />
-            </Route>
-        </Routes>
-    </BrowserRouter>,
-    document.getElementById('root')
-)
+const router = createBrowserRouter([
+    {
+        path: "/",
+        element: <EntryPoint />,
+        children: [
+            { index: true, element: <Home /> },
+            { path: "c/*", element: <RoutedMdArticle /> },
+            { path: "*", element: <PageNotFound /> }
+        ]
+    }
+]);
+
+ReactDOM.createRoot(document.getElementById("root")).render(
+    <React.StrictMode>
+        <RouterProvider router={router} />
+    </React.StrictMode>
+);
