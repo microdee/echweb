@@ -7,9 +7,6 @@ export default defineConfig({
         react()
     ],
     build: {
-        cssMinify: false,
-        sourcemap: true,
-        minify: false,
-        chunkSizeWarningLimit: 10000
+        chunkSizeWarningLimit: 1000
     }
 });
