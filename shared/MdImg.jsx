@@ -32,10 +32,6 @@ export default class MdImg extends React.Component {
         }
     }
 
-    componentWillUnmount() {
-        this.parallax.unregister();
-    }
-
     render() {
         let propsCopy = {...this.props};
         let caption = this.meta.caption ?? "";

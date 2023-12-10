@@ -13,16 +13,32 @@ export default class ParallaxEffect
         this.transitionMs = 1000.0;
         this.transitionPeriod = 0.0;
         this.unclipped = false;
+        this.wasConnectedOnce = false;
+        this.assumeDisconnected = false;
 
         this.dependencies = {
             rootHeight: 1,
             vpHeight: 0,
+            vpWidth: 0,
             elemHeight: 0,
             coeff: 0
         }
         this.viewProgressTimeline = null;
         this.animations = [];
-        this.unregistered = false;
+    }
+
+    isValid(refElement)
+    {
+        if (this.assumeDisconnected) return false;
+        if (refElement.isConnected) {
+            this.wasConnectedOnce = true;
+            return true;
+        }
+        if (this.wasConnectedOnce) {
+            this.assumeDisconnected = true;
+            return false;
+        }
+        return true;
     }
 
     absTop(el, t)
@@ -54,7 +70,8 @@ export default class ParallaxEffect
         let coeffStr = getComputedStyle(refElement).getPropertyValue('--parallax-coeff');
         if (refElement.hasAttribute("parallaxcoeff"))
             coeffStr = refElement.getAttribute("parallaxcoeff");
-        return Math.max(parseFloat(coeffStr), 0);
+        let result = Math.max(parseFloat(coeffStr), 0);
+        return result;
     }
 
     registerWithAnimFrame(refElement)
@@ -62,7 +79,7 @@ export default class ParallaxEffect
         this.root = document.getElementById("root");
 
         let animBody = (timestamp => {
-            if (this.unregistered) return;
+            if (!this.isValid(refElement)) return;
             if(refElement) {
                 this.determinePerfMode(timestamp);
                 if(this.lowPerfMode) {
@@ -82,10 +99,10 @@ export default class ParallaxEffect
 
                     refElement.style.transform = `translateY(${value}px)`;
                 }
-                if (!this.unregistered) window.requestAnimationFrame(animBody);
+                if (this.isValid(refElement)) window.requestAnimationFrame(animBody.bind(this));
             }
-        }).bind(this);
-        window.requestAnimationFrame(animBody);
+        });
+        window.requestAnimationFrame(animBody.bind(this));
     }
 
     updateTimeline(refElement)
@@ -104,7 +121,6 @@ export default class ParallaxEffect
             subject: refElement
         });
         let prevTr = refElement.style.transform ?? "";
-        console.log(prevTr);
         this.animations.push(
             refElement.animate([
                 { transform: `${prevTr} translateY(${-beginOffs * coeff}px)`, offset: 0 },
@@ -129,22 +145,25 @@ export default class ParallaxEffect
                 })
             );
         }
-    }
+     }
 
     getNewDependencies(refElement)
     {
-        return {
+        let result = {
             rootHeight: this.root.scrollHeight,
             vpHeight: window.innerHeight,
+            vpWidth: window.innerWidth,
             elemHeight: refElement.offsetHeight,
             coeff: this.getParallaxCoeff(refElement)
-        }
+        };
+        return result;
     }
 
     checkDependencies(prev, current)
     {
         return prev.rootHeight != current.rootHeight
             || prev.vpHeight != current.vpHeight
+            || prev.vpWidth != current.vpWidth
             || prev.elemHeight != current.elemHeight
             || prev.coeff != current.coeff;
     }
@@ -157,18 +176,18 @@ export default class ParallaxEffect
         this.updateTimeline(refElement);
         
         let animBody = (timestamp => {
-            if (this.unregistered) return;
+            if (!this.isValid(refElement)) return;
 
             let current = this.getNewDependencies(refElement);
             if (this.checkDependencies(this.dependencies, current)) {
                 this.dependencies = current;
                 this.updateTimeline(refElement);
             }
-            if (!this.unregistered)
-                window.requestAnimationFrame(animBody);
-        }).bind(this);
+            if (this.isValid(refElement))
+                window.requestAnimationFrame(animBody.bind(this));
+        });
 
-        window.requestAnimationFrame(animBody);
+        window.requestAnimationFrame(animBody.bind(this));
     }
 
     register(refElement, unclipped)
@@ -183,10 +202,5 @@ export default class ParallaxEffect
             console.log(e);
             this.registerWithAnimFrame(refElement);
         }
-    }
-
-    unregister()
-    {
-        this.unregistered = true;
     }
 }

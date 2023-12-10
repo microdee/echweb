@@ -13,5 +13,5 @@ export default class CodeBlock extends React.Component {
                 style={vscDarkPlus}
             />
         );
-    }
+    };
 }
