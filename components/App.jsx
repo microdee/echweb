@@ -1,11 +1,11 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import MainMenu from 'echweb-content/js/MainMenu';
 import Parameters from 'echweb-content/js/Parameters';
 import Logo from 'echweb-content/js/Logo';
 import SvgFilters from 'echweb-shared/SvgFilters';
 import MainScrollbar from './MainScrollbar';
 import {Gh1, Gh2} from 'echweb-shared/Gh';
+import EwLink from 'echweb-shared/EwLink';
 
 export default class App extends React.Component {
     constructor(props) {
@@ -36,7 +36,7 @@ export default class App extends React.Component {
                 {intro ? <Logo /> : <div style={{display: "none"}} />}
                 {allowHeader
                     ? <SelectedHeader>
-                        <Link to="/">{Parameters.header.name}</Link>
+                        <EwLink to="/">{Parameters.header.name}</EwLink>
                     </SelectedHeader>
                     : <></>
                 }

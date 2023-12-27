@@ -30,20 +30,11 @@ export class Gh1 extends React.Component {
         
 
         return (
-            <div {...idattr} className={`glitch-${props.glitchtype}${hoverSuffix}`} style={{ position: "relative"}}>
+            <span {...idattr} className={`glitch-${props.glitchtype}${hoverSuffix}`} style={{ position: "relative"}}>
                 <h1 {...hprops} style={{...props.style, ...GhOrigStyle}}>
                     {props.children}
                 </h1>
-                <h1 {...hprops} style={{...props.style, ...GhMiddleStyle}}>
-                    {props.children}
-                </h1>
-                <h1 {...hprops} className={`${props.className} before`}>
-                    {props.children}
-                </h1>
-                <h1 {...hprops} className={`${props.className} after`}>
-                    {props.children}
-                </h1>
-            </div>
+            </span>
         )
     }
 }
@@ -67,20 +58,11 @@ export class Gh2 extends React.Component {
         try { delete hprops.id; } catch (error) { }
 
         return (
-            <div {...idattr} className={`glitch-${props.glitchtype}${hoverSuffix}`} style={{ position: "relative"}}>
+            <span {...idattr} className={`glitch-${props.glitchtype}${hoverSuffix}`} style={{ position: "relative"}}>
                 <h2 {...hprops} style={{...props.style, ...GhOrigStyle}}>
                     {props.children}
                 </h2>
-                <h2 {...hprops} style={{...props.style, ...GhMiddleStyle}}>
-                    {props.children}
-                </h2>
-                <h2 {...hprops} className={`${props.className} before`}>
-                    {props.children}
-                </h2>
-                <h2 {...hprops} className={`${props.className} after`}>
-                    {props.children}
-                </h2>
-            </div>
+            </span>
         )
     }
 }

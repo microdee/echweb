@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import EwLink from './EwLink';
 import Parameters from 'echweb-content/js/Parameters';
 
 export function IsCurrentDomain(urlin) {
@@ -82,7 +82,7 @@ export function MdLinkHandler(props) {
     let {url, isRoot, isFile, isDomain, isRoute, isAnchor} = GetMdUrl(props.href);
     
     if(isRoute) return (
-        <Link to={url}>{props.children}</Link>
+        <EwLink to={url}>{props.children}</EwLink>
     );
     if(isAnchor) return (
         <a {...props} href={url}>{props.children}</a>
