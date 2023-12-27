@@ -4,9 +4,6 @@ import * as ReactDOM from 'react-dom/client';
 import {
     createBrowserRouter,
     RouterProvider,
-    BrowserRouter,
-    Routes,
-    Route,
     Navigate,
     Outlet,
     useLocation,
@@ -23,8 +20,7 @@ function EntryPoint() {
     let [searchParams, setSearchParams] = useSearchParams();
     let redirectToEncoded = searchParams.get("redirect");
     let location = useLocation();
-
-
+    
     document.title = `${Parameters.constants.globalTitle} ${location.pathname}`;
 
     if(redirectToEncoded) {
