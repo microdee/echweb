@@ -20,3 +20,4 @@ package-lock.json
 /build/bin/
 /build/obj/
 /public/content
+/dist_temp
