@@ -1,4 +1,0 @@
-[submodule "libs/hookrouter"]
-	path = libs/hookrouter
-	url = https://github.com/microdee/hookrouter.git
-	branch = react18-vite
