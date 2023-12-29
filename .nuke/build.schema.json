@@ -69,7 +69,8 @@
               "Install",
               "InstallContent",
               "InstallShared",
-              "Prepare"
+              "Prepare",
+              "ResetModules"
             ]
           }
         },
@@ -84,7 +85,8 @@
               "Install",
               "InstallContent",
               "InstallShared",
-              "Prepare"
+              "Prepare",
+              "ResetModules"
             ]
           }
         },

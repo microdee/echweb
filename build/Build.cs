@@ -61,6 +61,19 @@ class BuildMain : NukeBuild
         .After(Install, Prepare)
         .Executes(BuildBody);
 
+    void ResetModulesBody()
+    {
+        (RootDirectory / "package-lock.json").DeleteFile();
+        (RootDirectory / "shared" / "package-lock.json").DeleteFile();
+        (RootDirectory / "content" / "package-lock.json").DeleteFile();
+
+        (RootDirectory / "node_modules").DeleteDirectory();
+        (RootDirectory / "shared" / "node_modules").DeleteDirectory();
+        (RootDirectory / "content" / "node_modules").DeleteDirectory();
+    }
+    Target ResetModules => _ => _
+        .Executes(ResetModulesBody);
+
     record ContentDestinationPair(string Content, string Destination);
 
     Target Deploy => _ => _
