@@ -10,7 +10,6 @@ node_modules
 /dist
 /dist_git
 /preprod
-package-lock.json
 /public/c
 /index.html
 /public/404.html
