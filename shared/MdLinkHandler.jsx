@@ -1,6 +1,6 @@
 import React from 'react';
-import EwLink from './EwLink';
 import Parameters from 'echweb-content/js/Parameters';
+import { A } from './hookrouter';
 
 export function IsCurrentDomain(urlin) {
     return urlin.includes('localhost') || urlin.includes(Parameters.constants.domain)
@@ -82,7 +82,7 @@ export function MdLinkHandler(props) {
     let {url, isRoot, isFile, isDomain, isRoute, isAnchor} = GetMdUrl(props.href);
     
     if(isRoute) return (
-        <EwLink to={url}>{props.children}</EwLink>
+        <A href={url}>{props.children}</A>
     );
     if(isAnchor) return (
         <a {...props} href={url}>{props.children}</a>

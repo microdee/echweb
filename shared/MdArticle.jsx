@@ -3,10 +3,10 @@ import ReactMarkdown from 'react-markdown';
 import * as MdExtensions from './MdArticleExtensions'
 import remarkGfm from 'remark-gfm';
 import rehypeRaw from 'rehype-raw';
-import { useLocation } from 'react-router-dom';
 import {Gh1} from './Gh';
 import PathContext from './MdArticleContext';
 import Utils from './Utils';
+import { usePath } from './hookrouter';
 
 export default class MdArticle extends React.Component {
     constructor(props) {
@@ -131,8 +131,8 @@ export default class MdArticle extends React.Component {
     
 export function RoutedMdArticle()
 {
-    let location = useLocation();
-    let loc = location.pathname.replace(/\/$/gm, '');
+    let location = usePath(false, true);
+    let loc = location.replace(/\/$/gm, '');
     return (
         <MdArticle path={loc} />
     )

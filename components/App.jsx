@@ -5,7 +5,7 @@ import Logo from 'echweb-content/js/Logo';
 import SvgFilters from 'echweb-shared/SvgFilters';
 import MainScrollbar from './MainScrollbar';
 import {Gh1, Gh2} from 'echweb-shared/Gh';
-import EwLink from 'echweb-shared/EwLink';
+import { A } from 'echweb-shared/hookrouter';
 
 export default class App extends React.Component {
     constructor(props) {
@@ -36,7 +36,7 @@ export default class App extends React.Component {
                 {intro ? <Logo /> : <div style={{display: "none"}} />}
                 {allowHeader
                     ? <SelectedHeader>
-                        <EwLink to="/">{Parameters.header.name}</EwLink>
+                        <A href="/">{Parameters.header.name}</A>
                     </SelectedHeader>
                     : <></>
                 }

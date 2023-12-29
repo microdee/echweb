@@ -20,12 +20,11 @@
   },
   "homepage": "https://github.com/microdee/microdee.github.io#readme",
   "dependencies": {
-    "echweb-content": "file:./content",
-    "echweb-shared": "file:./shared",
     "react": "18.2.0",
     "react-dom": "18.2.0",
-    "react-router": "6.21.1",
-    "react-router-dom": "6.21.1"
+
+    "echweb-content": "file:./content",
+    "echweb-shared": "file:./shared"
   },
   "devDependencies": {
     "@vitejs/plugin-react": "4.2.1",

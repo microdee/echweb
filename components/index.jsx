@@ -1,53 +1,35 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom/client';
-
-import {
-    createBrowserRouter,
-    RouterProvider,
-    Navigate,
-    Outlet,
-    useLocation,
-    useSearchParams
-} from 'react-router-dom';
-
 import App from './App';
 import Home from 'echweb-content/js/Home';
 import Parameters from 'echweb-content/js/Parameters';
 import { RoutedMdArticle } from 'echweb-shared/MdArticle';
 import PageNotFound from 'echweb-shared/PageNotFound';
+import { navigate, useRoutes } from 'echweb-shared/hookrouter';
 
 function EntryPoint() {
-    let [searchParams, setSearchParams] = useSearchParams();
-    let redirectToEncoded = searchParams.get("redirect");
-    let location = useLocation();
+    let route = useRoutes({
+        "/": () => <Home />,
+        "/c*": () => <RoutedMdArticle />
+    });
+
+    let loc = new URL(window.location.href);
+    let redirectToEncoded = loc.searchParams.get("redirect");
     
-    document.title = `${Parameters.constants.globalTitle} ${location.pathname}`;
+    document.title = `${Parameters.constants.globalTitle} ${window.location.pathname}`;
 
     if(redirectToEncoded) {
-        return <Navigate to={decodeURIComponent(redirectToEncoded)} replace />
+        navigate(decodeURIComponent(redirectToEncoded));
+        return <></>
     } else {
         return (
-            <App intro={location.pathname === "/"} >
-                <Outlet />
+            <App intro={window.location.pathname === "/"} >
+                {route || <PageNotFound />}
             </App>
         );
     }
 };
 
-const router = createBrowserRouter([
-    {
-        path: "/",
-        element: <EntryPoint />,
-        children: [
-            { index: true, element: <Home /> },
-            { path: "c/*", element: <RoutedMdArticle /> },
-            { path: "*", element: <PageNotFound /> }
-        ]
-    }
-]);
-
 ReactDOM.createRoot(document.getElementById("root")).render(
-    <React.StrictMode>
-        <RouterProvider router={router} />
-    </React.StrictMode>
+    <EntryPoint />
 );
