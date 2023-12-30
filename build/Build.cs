@@ -84,7 +84,7 @@ class BuildMain : NukeBuild
                 // new("https://github.com/holy-olga/holy-olga.github.io-dev.git", "https://github.com/holy-olga/holy-olga.github.io.git"),
             };
 
-            var inputContent = RootDirectory / "Content";
+            var inputContent = RootDirectory / "content";
             var tempDist = RootDirectory / "dist_temp";
             var dist = RootDirectory / "dist";
 
