@@ -35,3 +35,13 @@
 .glitch.digital.subtle {
     filter: url(#glitch_DigitalSubtle);
 }
+
+#glitch-cover {
+    display: none;
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    -webkit-backdrop-filter: url(#glitch_DigitalBig);
+    backdrop-filter: url(#glitch_DigitalBig);
+    pointer-events: none;
+}

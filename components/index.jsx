@@ -5,12 +5,21 @@ import Home from 'echweb-content/js/Home';
 import Parameters from 'echweb-content/js/Parameters';
 import { RoutedMdArticle } from 'echweb-shared/MdArticle';
 import PageNotFound from 'echweb-shared/PageNotFound';
-import { navigate, useRoutes } from 'echweb-shared/hookrouter';
+import { navigate, useInterceptor, useRoutes } from 'echweb-shared/hookrouter';
 
 function EntryPoint() {
     let route = useRoutes({
         "/": () => <Home />,
         "/c*": () => <RoutedMdArticle />
+    });
+    let scrollInterceptor = useInterceptor((current, next) => {
+        document.getElementById("root").scrollTo({
+            top: 0, left: 0,
+            behavior: "instant"
+        });
+        document.getElementById("glitch-cover").style.setProperty("display", "block");
+        setTimeout(() => document.getElementById("glitch-cover").style.setProperty("display", "none"), 160);
+        return next;
     });
 
     let loc = new URL(window.location.href);
@@ -30,6 +39,6 @@ function EntryPoint() {
     }
 };
 
-ReactDOM.createRoot(document.getElementById("root")).render(
+ReactDOM.createRoot(document.getElementById("root")).render(<>
     <EntryPoint />
-);
+</>);
