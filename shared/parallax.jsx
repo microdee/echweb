@@ -93,7 +93,7 @@ export default class ParallaxEffect
                         refElement.style.transition = "none";
                     }
                     this.transitionPeriod -= this.frameMs;
-                    let coeff = this.getParallaxCoeff(refElement);
+                    let coeff = 1 - this.getParallaxCoeff(refElement);
                     let top = this.absTop(refElement, 0);
                     let value = (this.root.scrollTop - top + (this.root.clientHeight - refElement.offsetHeight) * 0.5) * coeff;
 
@@ -198,9 +198,8 @@ export default class ParallaxEffect
         try {
             this.registerWithScrollAnimTimeline(refElement);
         } catch (e) {
-            console.log("Browser didn't support ViewTimeline, falling back on naive parallax");
+            console.log("Browser didn't support ViewTimeline, there will be no parallax");
             console.log(e);
-            this.registerWithAnimFrame(refElement);
         }
     }
 }
