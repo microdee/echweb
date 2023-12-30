@@ -52,14 +52,14 @@ jobs:
         with:
           repository: ${{ inputs.target-repo }}
           fetch-depth: 0
-          path: dist_git
+          path: dist_temp
           lfs: true
           token:  "${{ secrets.PAGES_DEPLOY_TOKEN }}"
       -
         name: Move .git folder to dist
         run: |
-          mv ./dist_git/.git ./dist/.git
-          rm ./dist_git -r
+          mv ./dist_temp/.git ./dist/.git
+          rm ./dist_temp -r
       -
         name: Push changes to ${{ inputs.target-repo }}
         uses: stefanzweifel/git-auto-commit-action@v5
