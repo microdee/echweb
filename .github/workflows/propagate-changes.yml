@@ -13,11 +13,11 @@ jobs:
     uses: microdee/echweb-mcrode/.github/workflows/publish.yml@master
     secrets:
       MCRODE_DEPLOY_TOKEN: "${{ secrets.MCRODE_DEPLOY_TOKEN }}"
-  # build-nyulga_com:
-  #   permissions:
-  #     contents: write
-  #     pull-requests: write
-  #     actions: read
-  #   uses: holy-olga/holy-olga.github.io-dev/.github/workflows/publish.yml@master
-  #   secrets:
-  #     MCRODE_DEPLOY_TOKEN: "${{ secrets.NYULGA_DEPLOY_TOKEN }}"
+  build-nyulga_com:
+    permissions:
+      contents: write
+      pull-requests: write
+      actions: read
+    uses: holy-olga/holy-olga.github.io-dev/.github/workflows/publish.yml@master
+    secrets:
+      NYULGA_DEPLOY_TOKEN: "${{ secrets.NYULGA_DEPLOY_TOKEN }}"

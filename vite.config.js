@@ -8,7 +8,6 @@ export default defineConfig({
     ],
     build: {
         chunkSizeWarningLimit: 1000,
-        minify: false,
-        sourcemap: true
+        sourcemap: false
     }
 });
