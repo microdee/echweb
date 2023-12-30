@@ -3,7 +3,6 @@ import ReactMarkdown from 'react-markdown';
 import * as MdExtensions from './MdArticleExtensions'
 import remarkGfm from 'remark-gfm';
 import rehypeRaw from 'rehype-raw';
-import {Gh1} from './Gh';
 import PathContext from './MdArticleContext';
 import Utils from './Utils';
 import { usePath } from './hookrouter';
@@ -101,7 +100,7 @@ export default class MdArticle extends React.Component {
                             height: "100vh"
                         }}
                     >
-                        <Gh1 glitchtype="1">scroll...</Gh1>
+                        <h1 className="glitch big digital">scroll...</h1>
                     </div>
                 ) : (
                     <PathContext.Provider value={{

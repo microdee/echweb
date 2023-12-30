@@ -76,12 +76,13 @@ code:not(pre code) {
 h1, h2, h3, h4 {
     font-style: normal;
     font-weight: normal;
-    filter: saturate(0) brightness(2);
+    margin-top: 0px;
+    padding-top: 20px;
+    margin-bottom: 0px;
 }
 h1, .h0 {
     font-family: 'Iceberg', sans-serif;
     font-size: 64px;
-    filter: saturate(0) brightness(2);
 }
 h2 {
     font-family: 'Kelly Slab', sans-serif;

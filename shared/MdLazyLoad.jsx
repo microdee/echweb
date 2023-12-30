@@ -1,5 +1,4 @@
 import React from 'react';
-import {Gh1, Gh2} from './Gh';
 
 export default class MdLazyLoad extends React.Component {
     constructor(props) {
@@ -45,7 +44,7 @@ export default class MdLazyLoad extends React.Component {
                     width: "100%"
                 }}
             >
-                <Gh1 glitchtype="1">scroll...</Gh1>
+                <h1 className="glitch big digital">scroll...</h1>
             </div>
         )
     }

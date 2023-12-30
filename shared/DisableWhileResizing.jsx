@@ -1,6 +1,5 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import { Gh1 } from "./Gh";
 
 export default class DisableWhileResizing extends React.Component {
     constructor(props) {
@@ -41,7 +40,7 @@ export default class DisableWhileResizing extends React.Component {
         return (<>{
             this.state.visible
             ? this.props.children
-            : (<Gh1 glitchtype="1">resizing</Gh1>)
+            : (<h1 className="glitch big digital">resizing</h1>)
         }</>)
     }
 }

@@ -1,0 +1,37 @@
+.glitch {
+    padding-left: var(--glitch-scale);
+    padding-right: var(--glitch-scale);
+    margin-left: calc(0px - var(--glitch-scale));
+    margin-right: calc(0px - var(--glitch-scale));
+}
+.glitch.big {
+    padding-right: var(--glitch-big-scale);
+    padding-left: var(--glitch-big-scale);
+    margin-right: calc(0px - var(--glitch-big-scale));
+    margin-left: calc(0px - var(--glitch-big-scale));
+}
+.glitch.subtle {
+    padding-right: var(--glitch-subtle-scale);
+    padding-left: var(--glitch-subtle-scale);
+    margin-right: calc(0px - var(--glitch-subtle-scale));
+    margin-left: calc(0px - var(--glitch-subtle-scale));
+}
+
+.glitch.analog {
+    filter: url(#glitch_Analog);
+}
+.glitch.analog.big {
+    filter: url(#glitch_AnalogBig);
+}
+.glitch.analog.subtle {
+    filter: url(#glitch_AnalogSubtle);
+}
+.glitch.digital {
+    filter: url(#glitch_Digital);
+}
+.glitch.digital.big {
+    filter: url(#glitch_DigitalBig);
+}
+.glitch.digital.subtle {
+    filter: url(#glitch_DigitalSubtle);
+}

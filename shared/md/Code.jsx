@@ -1,6 +1,5 @@
 import React from 'react';
 import Utils from '../Utils';
-import {Gh1, Gh2} from 'echweb-shared/Gh';
 import CodeBlock from '../Codeblock';
 
 // bullshit happens when you do this. fucking web development

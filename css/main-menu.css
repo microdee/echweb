@@ -42,6 +42,14 @@
     margin-bottom: 0px;
 }
 
+#mainMenu .menuItem:hover {
+    filter: url(#glitch_Analog);
+    padding-right: var(--glitch-scale);
+    padding-left: var(--glitch-scale);
+    margin-right: calc(0px - var(--glitch-scale));
+    margin-left: calc(0px - var(--glitch-scale));
+}
+
 div.logo {
     position: relative;
     left: calc(var(--app-left) * -1);

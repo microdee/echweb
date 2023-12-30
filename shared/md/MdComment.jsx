@@ -2,7 +2,6 @@ import React, { useContext } from 'react';
 import PathContext from '../MdArticleContext';
 import Utils from '../Utils';
 import MdLazyLoad from '../MdLazyLoad';
-import {Gh1, Gh2} from 'echweb-shared/Gh';
 
 const MdComment = React.lazy(() => import('../MdComment'));
 
@@ -12,7 +11,7 @@ export default function MdCommentExt(props)
     return (
         <MdLazyLoad>
             <React.Suspense fallback={
-                <div className="importFallback"><Gh1 glitchtype={1}>♾️</Gh1></div>
+                <div className="importFallback"><h1 className="glitch big digital">♾️</h1></div>
             }>
                 <MdComment term={path.webPath} />
             </React.Suspense>

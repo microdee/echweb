@@ -1,54 +1,26 @@
 import React from 'react';
+import CartoonWiggleFilter from './filters/CartoonWiggleFilter';
+import GlitchFilter from './filters/GlitchFilter';
 
-export default class SvgFilters extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            noiseSeed: 0
-        }
-    }
+export default function SvgFilters() {
+    return (
+        <svg
+            version="1.2"
+            baseProfile="tiny"
+            xmlns="http://www.w3.org/2000/svg"
+            overflow="visible"
+            style={{
+                display: "none"
+            }}
+        >
+            <GlitchFilter id="glitch_Analog" type="analog" baseSeed={10} scale={30} />
+            <GlitchFilter id="glitch_AnalogBig" type="analog" baseSeed={21} scale={70} />
+            <GlitchFilter id="glitch_AnalogSubtle" type="analog" baseSeed={32} scale={5} analogSpeed={3} />
+            <GlitchFilter id="glitch_Digital" type="digital" baseSeed={100} scale={30} />
+            <GlitchFilter id="glitch_DigitalBig" type="digital" baseSeed={111} scale={100} />
+            <GlitchFilter id="glitch_DigitalSubtle" type="digital" baseSeed={122} scale={6} />
 
-    componentDidMount() {
-        this.interval = setInterval((() => {
-            this.setState({
-                noiseSeed: this.state.noiseSeed + 1
-            });
-        }).bind(this), 100);
-    }
-
-    componentWillUnmount() {
-        clearInterval(this.interval);
-    }
-
-    render() {
-        return (
-            <svg
-                version="1.2"
-                baseProfile="tiny"
-                xmlns="http://www.w3.org/2000/svg"
-                overflow="visible"
-                style={{
-                    display: "none"
-                }}
-            >
-                <filter id="cartoonWiggle" x="0%" y="0%" width="100%" height="100%">
-                    <feTurbulence
-                        id="turbulence"
-                        baseFrequency="0.006 0.006"
-                        result="cartoonWiggle.turbulance"
-                        numOctaves="1"
-                        type="fractalNoise"
-                        seed={this.state.noiseSeed}
-                    />
-                    <feDisplacementMap
-                        in="SourceGraphic"
-                        in2="cartoonWiggle.turbulance"
-                        scale="10"
-                        xChannelSelector="R"
-                        yChannelSelector="G"
-                    />
-                </filter>
-            </svg>
-        )
-    }
+            <CartoonWiggleFilter id="cartoonWiggle" />
+        </svg>
+    )
 }

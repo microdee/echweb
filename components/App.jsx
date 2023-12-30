@@ -4,7 +4,6 @@ import Parameters from 'echweb-content/js/Parameters';
 import Logo from 'echweb-content/js/Logo';
 import SvgFilters from 'echweb-shared/SvgFilters';
 import MainScrollbar from './MainScrollbar';
-import {Gh1, Gh2} from 'echweb-shared/Gh';
 import { A } from 'echweb-shared/hookrouter';
 
 export default class App extends React.Component {
@@ -23,11 +22,11 @@ export default class App extends React.Component {
             }
         }
 
-        let SelectedHeader = props => <h1 {...hprops}>{props.children}</h1>;
         if ('glitch' in Parameters.header) {
-            SelectedHeader = props => <Gh1 glitchtype="1" {...hprops}>{props.children}</Gh1>;
+            hprops.className += " glitch digital big";
         }
 
+        let SelectedHeader = props => <h1 {...hprops}>{props.children}</h1>;
         let allowHeader = ('allowHeaderOnIntro' in Parameters.header) || !intro;
 
         return <>

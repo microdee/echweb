@@ -1,7 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import HTMLFlipBook from "react-pageflip";
-import {Gh1, Gh2 } from './Gh';
 import { pdfjs, Document, Outline, Page as PdfPage } from 'react-pdf';
 import 'react-pdf/dist/esm/Page/AnnotationLayer.css';
 import 'react-pdf/dist/esm/Page/TextLayer.css';
@@ -18,9 +17,9 @@ pdfjs.GlobalWorkerOptions.workerSrc = `//unpkg.com/pdfjs-dist@${pdfjs.version}/b
 function Page(props)
 {
     return <PdfPage {...props}
-        error={<Gh1 glitchtype="1">❌</Gh1>}
-        noData={<Gh1 glitchtype="1">⚠️</Gh1>}
-        loading={<Gh1 glitchtype="1">♾️</Gh1>}
+        error={<h1 className="glitch big digital">❌</h1>}
+        noData={<h1 className="glitch big digital">⚠️</h1>}
+        loading={<h1 className="glitch big digital">♾️</h1>}
         onRenderError={e => console.log(e)}
         onLoadError={e => console.log(e)}
         onRenderTextLayerError={e => console.log(e)}
@@ -187,9 +186,9 @@ export default class MdPdf extends React.Component {
                         cMapPacked: true
                     }}
                     onLoadSuccess={this.onDocumentLoaded.bind(this)}
-                    error={<Gh1 glitchtype="1">❌</Gh1>}
-                    noData={<Gh1 glitchtype="1">⚠️</Gh1>}
-                    onLoadError={<Gh1 glitchtype="1">💢</Gh1>}
+                    error={<h1 className="glitch big digital">❌</h1>}
+                    noData={<h1 className="glitch big digital">⚠️</h1>}
+                    onLoadError={<h1 className="glitch big digital">💢</h1>}
                     renderMode="canvas"
                 > {
                     this.state.loaded
@@ -239,7 +238,7 @@ export default class MdPdf extends React.Component {
                         }
                         </HTMLFlipBook>
                     ) : (
-                        <Gh1 glitchtype="1">loading</Gh1>
+                        <h1 className="glitch big digital">loading</h1>
                     )
                 }
                 </Document>

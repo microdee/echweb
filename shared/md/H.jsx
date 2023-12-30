@@ -1,6 +1,5 @@
 import React from 'react';
 import Utils from '../Utils';
-import {Gh1, Gh2} from '../Gh';
 
 export default function HExt(props)
 {
@@ -12,17 +11,22 @@ export default function HExt(props)
     let hprops = {
         ...props
     }
-    function H(inprops, inhprops)
-    {
-        if(inprops.level == 1) return (<Gh1 glitchtype="2" id={anchorText}>{inprops.children}</Gh1>);
-        if(inprops.level == 2) return (<Gh2 glitchtype="2" id={anchorText}>{inprops.children}</Gh2>);
-        return React.createElement(`h${inhprops.level}`, inhprops, inhprops.children);
+
+    if (hprops.className || false) {
+        hprops.className += " glitch analog subtle";
+    }
+    else {
+        hprops.className = "glitch analog subtle";
+    }
+
+    if (hprops.level <= 1) {
+        hprops.className = hprops.className.replace("analog", "digital");
     }
 
     return (
         <>
             <a id={anchorText} className="header-anchor"></a>
-            {H(props, hprops)}
+            {React.createElement(`h${hprops.level}`, hprops, hprops.children)}
         </>
     )
 }

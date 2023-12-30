@@ -17,6 +17,10 @@
     --approot-shadows: calc(var(--app-side-width) * 0.25);
     --parallax-coeff: 0.45;
 
+    --glitch-scale: 30px;
+    --glitch-big-scale: 100px;
+    --glitch-subtle-scale: 6px;
+
     scroll-behavior: smooth;
 }
 

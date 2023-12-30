@@ -1,7 +1,6 @@
 import React from 'react';
 import MdLazyLoad from '../MdLazyLoad';
 import { MdLinkHandler, GetMdUrl } from '../MdLinkHandler';
-import {Gh1, Gh2} from '../Gh';
 import Utils from '../Utils';
 
 const MdPdfRoot = React.lazy(() => import('../MdPdfRoot'));
@@ -14,14 +13,14 @@ export default function MdPdfExt(props)
     if(isFile || !isDomain) return (
         <MdLazyLoad>
             <React.Suspense fallback={
-                <div className="mdpdf invalid"><Gh1 glitchtype={1}>♾️</Gh1></div>
+                <div className="mdpdf invalid"><h1 className="glitch big digital">♾️</h1></div>
             }>
                 <MdPdfRoot href={url} {...passProps} />
             </React.Suspense>
         </MdLazyLoad>
     );
     return (
-        <div className="mdpdf invalid"><Gh1 glitchtype={1}>❌</Gh1></div>
+        <div className="mdpdf invalid"><h1 className="glitch big digital">❌</h1></div>
     )
 }
 

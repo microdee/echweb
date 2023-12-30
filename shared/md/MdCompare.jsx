@@ -2,7 +2,6 @@ import React from 'react';
 import MdLazyLoad from '../MdLazyLoad';
 import { MdLinkHandler, GetMdUrl } from '../MdLinkHandler';
 import Utils from '../Utils';
-import {Gh1, Gh2} from 'echweb-shared/Gh';
 
 const MdCompare = React.lazy(() => import('../MdCompare'));
 
@@ -16,7 +15,7 @@ export default function MdCompareExt(props)
     return (
         <MdLazyLoad>
             <React.Suspense fallback={
-                <div className="importFallback"><Gh1 glitchtype={1}>♾️</Gh1></div>
+                <div className="importFallback"><h1 className="glitch big digital">♾️</h1></div>
             }>
                 <MdCompare ls={ls.url} rs={rs.url} {...passAttribs} />
             </React.Suspense>
