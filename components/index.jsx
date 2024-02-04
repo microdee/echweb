@@ -5,12 +5,24 @@ import Home from 'echweb-content/js/Home';
 import Parameters from 'echweb-content/js/Parameters';
 import { RoutedMdArticle } from 'echweb-shared/MdArticle';
 import PageNotFound from 'echweb-shared/PageNotFound';
-import { navigate, useInterceptor, useRoutes } from 'echweb-shared/hookrouter';
+import { navigate, useInterceptor, useRoutes, prepareRoute } from 'echweb-shared/hookrouter';
+import { ContentRoutes, ContentRoutesMeta } from 'echweb-content/js/ContentRoutes';
+
+export function getContentRouteMeta(currentPath) {
+    const candidate = Object.entries(ContentRoutesMeta).find(e => {
+        const [route, meta] = e;
+        const [regex, groupNames] = prepareRoute(route);
+        console.log(regex);
+        return currentPath.match(regex);
+    });
+    return candidate ? candidate[1] : {};
+}
 
 function EntryPoint() {
     let route = useRoutes({
         "/": () => <Home />,
-        "/c*": () => <RoutedMdArticle />
+        "/c*": () => <RoutedMdArticle />,
+        ...ContentRoutes
     });
     let scrollInterceptor = useInterceptor((current, next) => {
         document.getElementById("root").scrollTo({
@@ -27,15 +39,22 @@ function EntryPoint() {
     
     document.title = `${Parameters.constants.globalTitle} ${window.location.pathname}`;
 
+    let routeMeta = getContentRouteMeta(window.location.pathname);
+    let isStandalone = "standalone" in routeMeta;
+
     if(redirectToEncoded) {
         navigate(decodeURIComponent(redirectToEncoded));
         return <></>
     } else {
-        return (
-            <App intro={window.location.pathname === "/"} >
-                {route || <PageNotFound />}
-            </App>
-        );
+        return isStandalone
+            ? (
+                route || <PageNotFound />
+            )
+            : (
+                <App intro={window.location.pathname === "/"} >
+                    {route || <PageNotFound />}
+                </App>
+            );
     }
 };
 

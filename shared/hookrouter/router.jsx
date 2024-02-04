@@ -47,7 +47,7 @@ export const ParentContext = React.createContext(null);
  * @param {string} inRoute
  * @returns {Array} [RegExp, propList]
  */
-const prepareRoute = (inRoute) => {
+export const prepareRoute = (inRoute) => {
     if (preparedRoutes[inRoute]) {
         return preparedRoutes[inRoute];
     }
