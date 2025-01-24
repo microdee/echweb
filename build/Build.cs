@@ -36,11 +36,9 @@ class BuildMain : NukeBuild
     void BuildBody()
     {
         NPM("run build", workingDirectory: RootDirectory);
-        FileSystemTasks.CopyDirectoryRecursively(
-            RootDirectory / "content",
+        (RootDirectory / "content").Copy(
             RootDirectory / "dist" / "content",
-            DirectoryExistsPolicy.Merge,
-            FileExistsPolicy.Overwrite,
+            ExistsPolicy.MergeAndOverwrite,
             d => d.Name.EqualsAnyOrdinalIgnoreCase(
                 "node_modules",
                 "js",
@@ -50,11 +48,9 @@ class BuildMain : NukeBuild
             ),
             f => f.Name.EqualsOrdinalIgnoreCase("package.json")
         );
-        FileSystemTasks.CopyDirectoryRecursively(
-            RootDirectory / "content" / "dist",
+        (RootDirectory / "content" / "dist").Copy(
             RootDirectory / "dist",
-            DirectoryExistsPolicy.Merge,
-            FileExistsPolicy.Overwrite
+            ExistsPolicy.MergeAndOverwrite
         );
     }
     Target Build => _ => _
@@ -121,11 +117,7 @@ class BuildMain : NukeBuild
                 );
 
                 Log.Information("Exchanging .git folder");
-                FileSystemTasks.MoveDirectoryToDirectory(
-                    tempDist / ".git",
-                    dist,
-                    DirectoryExistsPolicy.Fail
-                );
+                (tempDist / ".git").MoveToDirectory(dist, ExistsPolicy.Fail);
 
                 Log.Information("Pushing new content");
                 GitTasks.Git(
