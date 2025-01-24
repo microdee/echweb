@@ -7,6 +7,7 @@ import {useTitle, getTitle} from './hookrouter/title';
 import {
 	navigate,
 	useRoutes,
+	prepareRoute,
 	setPath,
 	getPath,
 	getWorkingPath,
@@ -26,6 +27,7 @@ export {
 	useControlledInterceptor,
 	navigate,
 	useRoutes,
+	prepareRoute,
 	setPath,
 	getPath,
 	getWorkingPath,
