@@ -196,9 +196,11 @@ export default class ParallaxEffect
             this.unclipped = true;
         }
         try {
+            // Only supported in chromium based browsers
             this.registerWithScrollAnimTimeline(refElement);
         } catch (e) {
-            console.log("Browser didn't support ViewTimeline, there will be no parallax");
+            console.log("Browser didn't support ViewTimeline, parallax effects will not happen");
+            // this.registerWithAnimFrame(refElement);
             console.log(e);
         }
     }

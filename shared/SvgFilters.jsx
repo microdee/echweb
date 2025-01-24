@@ -10,7 +10,7 @@ export default function SvgFilters() {
             xmlns="http://www.w3.org/2000/svg"
             overflow="visible"
             style={{
-                display: "none"
+                position:"absolute", height:0
             }}
         >
             <GlitchFilter id="glitch_Analog" type="analog" baseSeed={10} scale={30} />

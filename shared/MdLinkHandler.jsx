@@ -27,6 +27,16 @@ export function GetMdUrl(href) {
     let sanitizedUrl = url.href.replace(/#[^\/]*/gm, '');
     let sanitized = GetLocalPathFromUrl(sanitizedUrl);
 
+    if (url.href.includes('??literal'))
+        return {
+            url: url.href.replace('??literal', ''),
+            isRoot: false,
+            isFile: false,
+            isLocal: false,
+            isDomain: false,
+            isRoute: false,
+            isAnchor: false
+        };
     if(IsCurrentDomain(sanitized.url.href) && localPath.includes('.') && sanitized.localPath.includes('root/'))
         return {
             url: new URL(localPath.replace(/.*root\//gm, ''), window.origin).href,
