@@ -34,8 +34,8 @@ export default function CardLinkExt(props)
             secondaryTextColor='#bbb'
             borderColor='#fff'
             fetcher={u => {
-                let hostname = window.location.hostname.replace(".", "-");
-                return fetch(`https://holyolga-linkpreview-${window.location.hostname}.herokuapp.com/v2?url=${u}`)
+                let hostname = window.location.hostname + (window.location.port != '' ? ':' + window.location.port : '');
+                return fetch(`https://echwebrlpproxylocalhost-4mnq34zg.b4a.run/v2?url=${u}&host=${hostname}`)
                     .then(handleResponse)
                     .then(result => Promise.resolve(transformResult(result).metadata));
             }}
