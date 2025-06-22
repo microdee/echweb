@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import LazyLoadContext from './MdLazyLoadContext';
 
 export default class MdLazyLoad extends React.Component {
     constructor(props) {
@@ -31,21 +32,26 @@ export default class MdLazyLoad extends React.Component {
         this.intersectionObserver.observe(this.placeHolderDiv.current)
     }
 
-    render() {
+    render()
+    {
         return this.state.visible ? (
             this.props.children
         ) : (
-            <div
-                ref={this.placeHolderDiv}
-                className="lazy-placeholder"
-                style={{
-                    position: "relative",
-                    height: "50vh",
-                    width: "100%"
-                }}
-            >
-                <h1 className="glitch big digital">scroll...</h1>
-            </div>
+            <LazyLoadContext.Consumer>
+                {llctx => (
+                    <div
+                        ref={this.placeHolderDiv}
+                        className="lazy-placeholder"
+                        style={{
+                            position: "relative",
+                            height: llctx.height,
+                            width: llctx.width
+                        }}
+                        >
+                        <h1 className="glitch big digital">scroll...</h1>
+                    </div>
+                )}
+            </LazyLoadContext.Consumer>
         )
     }
 }
