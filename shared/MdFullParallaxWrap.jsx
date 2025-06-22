@@ -33,26 +33,22 @@ export default class MdFullParallaxWrap extends React.Component {
                 </div>
             );
         }
+        
+        let childrenIn = ("props" in this.props.children)
+            ? [ this.props.children ]
+            : this.props.children;
 
-        let firstChild = ("props" in this.props.children)
-            ? this.props.children
-            : this.props.children[0];
-
-        let blurredChildren = React.cloneElement(
-            firstChild,
-            {
-                ...firstChild.props,
-                style: {
-                    position: "absolute",
-                    filter: "blur(40px)"
-                }
-            }
-        );
+        let blurredChildrenArray = childrenIn.map((c, i) => React.cloneElement(c, {...c.props}));
         return (
             <div ref={this.mainDiv} className="mdFull" style={{
                 backgroundColor: "black",
             }}>
-                {blurredChildren}
+                <div style={{
+                    position: "absolute",
+                    filter: "blur(40px)"
+                }}>
+                    {blurredChildrenArray}
+                </div>
                 <div ref={this.mainContent} {...optionals}>
                     {this.props.children}
                 </div>
