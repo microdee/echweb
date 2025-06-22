@@ -90,3 +90,7 @@ div.Image[style="background-image: url(\"localhost/img-placeholder.jpg\"), url(\
 .mdNoGap {
     margin-bottom: var(--p-margin);
 }
+
+.mdFade {
+    opacity: 0.6;
+}
