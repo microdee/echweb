@@ -13,7 +13,7 @@
     "url": "https://github.com/microdee/microdee.github.io/issues"
   },
   "scripts": {
-    "dev": "vite",
+    "dev": "vite --port 6111",
     "build": "vite build",
     "preview": "vite preview",
     "mdPrepare": "node prepare.mjs"

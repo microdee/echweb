@@ -7,7 +7,7 @@
             "runtimeArgs": [
                 "--remote-debugging-port=9222"
             ],
-            "url": "http://localhost:5173",
+            "url": "http://localhost:6111",
             "presentation": {
                 "hidden": true
             }
@@ -20,7 +20,7 @@
                 "--headless",
                 "--remote-debugging-port=9222"
             ],
-            "url": "http://localhost:5173",
+            "url": "http://localhost:6111",
             "presentation": {
                 "hidden": true
             }
@@ -30,7 +30,7 @@
             "name": "Open Edge DevTools",
             "request": "attach",
             //"url": "http://localhost:3000/graph-test",
-            "url": "http://localhost:5173",
+            "url": "http://localhost:6111",
             "presentation": {
                 "hidden": true
             }
