@@ -79,6 +79,9 @@ export default class MdImg extends React.Component {
 
         if("full" in this.meta)
         {
+            if ("fit" in this.meta) {
+                classes += " fit";
+            }
             return (<div className="mdCaptionWrap">
                 <MdFullParallaxWrap noblur={noBlur} {...optionals}>
                     <img {...propsCopy} className={classes.trim()}/>
