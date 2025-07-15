@@ -55,8 +55,8 @@ export default class ParallaxEffect
             this.prevTimestamp = timestamp;
         }
         this.frameMs = timestamp - this.prevTimestamp;
-        if (window.document.hasFocus()) {
-            this.perfCounter += this.frameMs > 33.33 ? -this.frameMs : this.frameMs * 0.1;
+        if (window.document.hasFocus() && this.frameMs < 250) {
+            this.perfCounter += this.frameMs > 50 ? -this.frameMs : this.frameMs * 0.666;
         }
         if(Math.abs(this.perfCounter) >= this.antiHisteresys)
         {
@@ -81,24 +81,24 @@ export default class ParallaxEffect
         let animBody = (timestamp => {
             if (!this.isValid(refElement)) return;
             if(refElement) {
-                this.determinePerfMode(timestamp);
-                if(this.lowPerfMode) {
-                    refElement.style.transition = `transform ${this.transitionMs}ms ease-in-out`;
-                    refElement.style.transform = "translateY(0px)";
-                    this.transitionPeriod = this.transitionMs;
-                }
-                else {
-                    if(this.transitionPeriod < 0)
-                    {
-                        refElement.style.transition = "none";
-                    }
+                // this.determinePerfMode(timestamp);
+                // if(this.lowPerfMode) {
+                //     refElement.style.transition = `transform ${this.transitionMs}ms ease-in-out`;
+                //     refElement.style.transform = "translateY(0px)";
+                //     this.transitionPeriod = this.transitionMs;
+                // }
+                // else {
+                //    if(this.transitionPeriod < 0)
+                //    {
+                //        refElement.style.transition = "none";
+                //    }
                     this.transitionPeriod -= this.frameMs;
                     let coeff = 1 - this.getParallaxCoeff(refElement);
                     let top = this.absTop(refElement, 0);
                     let value = (this.root.scrollTop - top + (this.root.clientHeight - refElement.offsetHeight) * 0.5) * coeff;
 
                     refElement.style.transform = `translateY(${value}px)`;
-                }
+                // }
                 if (this.isValid(refElement)) window.requestAnimationFrame(animBody.bind(this));
             }
         });
@@ -199,8 +199,8 @@ export default class ParallaxEffect
             // Only supported in chromium based browsers
             this.registerWithScrollAnimTimeline(refElement);
         } catch (e) {
-            console.log("Browser didn't support ViewTimeline, parallax effects will not happen");
-            // this.registerWithAnimFrame(refElement);
+            console.log("Browser didn't support ViewTimeline, parallax effects will be jank");
+            this.registerWithAnimFrame(refElement);
             console.log(e);
         }
     }
