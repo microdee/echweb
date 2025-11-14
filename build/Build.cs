@@ -70,6 +70,24 @@ class BuildMain : NukeBuild
     Target ResetModules => _ => _
         .Executes(ResetModulesBody);
 
+    Target FetchLinkMeta => _ => _
+        .Executes(() =>
+        {
+            var contentDir = RootDirectory / "content";
+            foreach (var md in contentDir.GetFiles("*.md", 40))
+            {
+                var text = md.ReadAllText();
+                if (text.Contains("<cardlink"))
+                {
+                    Log.Information("Processing {0} for cardlinks", md);
+                    var lines = text
+                        .SplitLineBreaks()
+                        .Select(l => CardlinkHandler.TransformCardLinkLine(l, md));
+                    md.WriteAllLines(lines);
+                }
+            }
+        });
+
     record ContentDestinationPair(string Content, string Destination);
 
     Target Deploy => _ => _
@@ -77,7 +95,7 @@ class BuildMain : NukeBuild
         {
             var remotes = new ContentDestinationPair[] {
                 new("https://github.com/microdee/echweb-mcrode.git", "https://github.com/microdee/microdee.github.io.git"),
-                // new("https://github.com/holy-olga/holy-olga.github.io-dev.git", "https://github.com/holy-olga/holy-olga.github.io.git"),
+                new("https://github.com/holy-olga/holy-olga.github.io-dev.git", "https://github.com/holy-olga/holy-olga.github.io.git"),
             };
 
             var inputContent = RootDirectory / "content";
